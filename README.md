@@ -1,0 +1,77 @@
+# Sunny Day
+
+[![NPM](https://img.shields.io/npm/v/sunny-day.svg?label=sunny-day)](https://www.npmjs.com/package/sunny-day) [![Downloads/week](https://img.shields.io/npm/dw/sunny-day.svg)](https://npmjs.org/package/sunny-day) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/sunny-day/main/LICENSE.txt)
+
+## About
+
+This is a Salesforce CLI plugin containing handy metadata analysis utilities. I created this plugin to get metadata processing functionality that I find useful into the hands of all Salesforce developers/administrators.
+
+## `ps2csv` Usage Examples
+
+1. Output all user permissions for a permission set with name my_ps as CSV and make the first column the permission name.
+
+   ```
+   sf sday ps2csv --permissionset my_ps --permission userPermissions --firstcol name
+   ```
+
+2. Same as above but now write the output to a file.
+
+   ```
+   sf sday ps2csv --permissionset my_ps --permission userPermissions --firstcol name --outputfile user_perms.csv
+   ```
+
+3. Output object level permissions
+
+   ```
+   sf sday ps2csv --permissionset my_ps --permission objectPermissions
+   ```
+
+4. Output field level permissions from a project in another folder.
+
+   ```
+   sf sday ps2csv --projectdir ../my_other_sandbox --permissionset my_ps --permission fieldPermissions
+   ```
+
+5. Get the full list of options and more info.
+
+   ```
+   sf sday ps2csv --help
+   ```
+
+## Install
+
+To install the latest version:
+
+```bash
+sf plugins install sunny-day
+```
+
+If you don't want to install the official release you can clone this repository link it to your `sf` command:
+
+```bash
+# Clone the repository
+git clone git@github.com:salesforcecli/sunny-day
+
+# Install the dependencies and compile
+yarn && yarn build
+
+# Link sunny-day to your sf cli
+sf plugins link .
+```
+
+## Issues
+
+## Roadmap
+
+March '25 release:
+
+- Permission Set Group to csv command ( `psg2csv` ), it will work just like ps2csv but take into account multiple Permission Sets as well as a Muting Permission Set if one exists.
+- Add a "Contributing" section to the README laying out how to contribute to the project.
+
+April '25 release:
+
+- adding a 'compare' flag. This will allows the user to compare one permission set (or permission set group) with another and identify differences.
+
+## Changelog
+
+- 1/9/2025 - version 1.0.0 released
