@@ -43,7 +43,7 @@ This is a Salesforce CLI plugin containing handy metadata analysis utilities. I 
 To install the latest version:
 
 ```bash
-sf plugins install chasd00@sunny-day
+sf plugins install @chasd00/sunny-day
 ```
 
 If you don't want to install the official release you can clone this repository link it to your `sf` command:
