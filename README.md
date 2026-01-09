@@ -61,6 +61,8 @@ sf plugins link .
 
 ## Issues
 
+Log any issues you find here https://github.com/chasd00/sunny-day/issues
+
 ## Roadmap
 
 March '25 release:
