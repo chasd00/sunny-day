@@ -18,7 +18,7 @@ type PermissionSetSubset = {
 };
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
-const messages = Messages.loadMessages('sunny-day', 'sday.ps2csv');
+const messages = Messages.loadMessages('@chasd00/sunny-day', 'sday.ps2csv');
 
 export type SdayPs2csvResult = {
   path: string;
