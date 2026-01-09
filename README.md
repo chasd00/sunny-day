@@ -50,7 +50,7 @@ If you don't want to install the official release you can clone this repository 
 
 ```bash
 # Clone the repository
-git clone git@github.com:salesforcecli/sunny-day
+git clone git@github.com:chasd00/sunny-day.git
 
 # Install the dependencies and compile
 yarn && yarn build
