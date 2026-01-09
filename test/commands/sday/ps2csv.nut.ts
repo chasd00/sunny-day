@@ -5,6 +5,7 @@ describe('sday ps2csv NUTs', () => {
   let session: TestSession;
 
   before(async () => {
+    // testsession project dir
     session = await TestSession.create({ devhubAuthStrategy: 'NONE' });
   });
 
@@ -13,7 +14,7 @@ describe('sday ps2csv NUTs', () => {
   });
 
   it('should display object permissions', () => {
-    const command = 'sday ps2csv -d ./test/testproject -p ps1 -r objectPermissions -c object';
+    const command = 'sday ps2csv -p ps1 -r objectPermissions -c object';
     const output = execCmd(command, { ensureExitCode: 0 }).shellOutput.stdout;
     expect(output).to.contain('Account');
   });

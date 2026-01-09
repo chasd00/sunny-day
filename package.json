@@ -132,7 +132,8 @@
     "test:only": {
       "command": "nyc mocha \"test/**/*.test.ts\"",
       "env": {
-        "FORCE_COLOR": "2"
+        "FORCE_COLOR": "2",
+        "TESTKIT_PROJECT_DIR": "./test/testproject"
       },
       "files": [
         "test/**/*.ts",
