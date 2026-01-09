@@ -1,6 +1,6 @@
 {
   "name": "@chasd00/sunny-day",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collection of useful Salesforce CLI metadata utilities",
   "keywords": [
     "force",
@@ -46,7 +46,6 @@
     "format": "wireit",
     "link-check": "wireit",
     "lint": "wireit",
-    "postinstall": "yarn husky install",
     "postpack": "sf-clean --ignore-signing-artifacts",
     "prepack": "sf-prepack",
     "test": "wireit",
