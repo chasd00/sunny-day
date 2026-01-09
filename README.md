@@ -1,6 +1,6 @@
 # Sunny Day
 
-[![NPM](https://img.shields.io/npm/v/sunny-day.svg?label=sunny-day)](https://www.npmjs.com/package/sunny-day) [![Downloads/week](https://img.shields.io/npm/dw/sunny-day.svg)](https://npmjs.org/package/sunny-day) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/salesforcecli/sunny-day/main/LICENSE.txt)
+[![NPM](https://img.shields.io/npm/v/@chasd00/sunny-day.svg?label=sunny-day)](https://www.npmjs.com/package/@chasd00/sunny-day) [![Downloads/week](https://img.shields.io/npm/dw/@chasd00/sunny-day.svg)](https://npmjs.org/package/@chasd00/sunny-day) [![License](https://img.shields.io/badge/License-BSD%203--Clause-brightgreen.svg)](https://raw.githubusercontent.com/chasd00/sunny-day/main/LICENSE.txt)
 
 ## About
 
