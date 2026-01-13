@@ -11,13 +11,13 @@ This is a Salesforce CLI plugin containing handy metadata analysis utilities. I 
 1. Output all user permissions for a permission set with name my_ps as CSV and make the first column the permission name.
 
    ```
-   sf sday ps2csv --permissionset my_ps --permission userPermissions --firstcol name
+   sf sday ps2csv --permissionset my_ps --permission userPermissions
    ```
 
 2. Same as above but now write the output to a file.
 
    ```
-   sf sday ps2csv --permissionset my_ps --permission userPermissions --firstcol name --outputfile user_perms.csv
+   sf sday ps2csv --permissionset my_ps --permission userPermissions --outputfile user_perms.csv
    ```
 
    Note: If your output filename ends with .xlsx then an Excel spreadsheet is created instead of a plain text/csv file
