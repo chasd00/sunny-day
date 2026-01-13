@@ -20,6 +20,8 @@ This is a Salesforce CLI plugin containing handy metadata analysis utilities. I 
    sf sday ps2csv --permissionset my_ps --permission userPermissions --firstcol name --outputfile user_perms.csv
    ```
 
+   Note: If your output filename ends with .xlsx then an Excel spreadsheet is created instead of a plain text/csv file
+
 3. Output object level permissions
 
    ```
@@ -70,10 +72,16 @@ Log any issues you find here https://github.com/chasd00/sunny-day/issues
 - Permission Set Group to csv command ( `psg2csv` ), it will work just like ps2csv but take into account multiple Permission Sets as well as a Muting Permission Set if one exists.
 - Add a "Contributing" section to the README laying out how to contribute to the project.
 
-1.2 release (Targetig April 2026):
+  1.2 release (Targetig April 2026):
 
 - adding a 'compare' flag. This will allows the user to compare one permission set (or permission set group) with another and identify differences.
 
 ## Changelog
 
+- 1/13/2026
+  - sensible column ordering by default, now Permission Set name and object/field/user permission name are always the first two columns of the output
+  - flag `--firstcol` is now marked as deprecated and does nothing
+  - added support for writing directly to an Excel file if flag `--outputfile` has extension .xlsx
+  - refactored a lot of the Permission Set parsing code for reusability when it's time to add psg2csv
+  - added a CLAUDE.md file so Claude Code can help out where it can
 - 1/9/2026 - version 1.0.0 released

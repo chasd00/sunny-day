@@ -59,7 +59,8 @@
     "@salesforce/sf-plugins-core": "^12",
     "@types/node": "^24.10.4",
     "fast-xml-parser": "^5.3.3",
-    "wireit": "^0.14.12"
+    "wireit": "^0.14.12",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@oclif/plugin-command-snapshot": "^5.1.9",
