@@ -36,7 +36,7 @@ Output filename
 
 # flags.outputfile.description
 
-If you want the output to goto a file instead of stdout (and without using a shell redirection) then you must specify an output filename.
+If you want the output to goto a file instead of stdout (and without using a shell redirection) then you must specify an output filename. Note, if your filename ends with .xlsx then an Excel Spreadsheet is created otherwise a standard text/csv file will be created.
 
 # flags.firstcol.summary
 
