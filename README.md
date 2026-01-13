@@ -46,7 +46,7 @@ To install the latest version:
 sf plugins install @chasd00/sunny-day
 ```
 
-If you don't want to install the official release you can clone this repository link it to your `sf` command:
+If you don't want to install the official release you can clone this repository and link it to your `sf` command:
 
 ```bash
 # Clone the repository
@@ -65,15 +65,15 @@ Log any issues you find here https://github.com/chasd00/sunny-day/issues
 
 ## Roadmap
 
-March '25 release:
+1.1 release (Targeting March 2026):
 
 - Permission Set Group to csv command ( `psg2csv` ), it will work just like ps2csv but take into account multiple Permission Sets as well as a Muting Permission Set if one exists.
 - Add a "Contributing" section to the README laying out how to contribute to the project.
 
-April '25 release:
+1.2 release (Targetig April 2026):
 
 - adding a 'compare' flag. This will allows the user to compare one permission set (or permission set group) with another and identify differences.
 
 ## Changelog
 
-- 1/9/2025 - version 1.0.0 released
+- 1/9/2026 - version 1.0.0 released
