@@ -4,7 +4,7 @@ Convert a portion of a Permission Set to CSV.
 
 # description
 
-Output filtered permission Set data to stdout or a file. Flags let you set the permissions to extract and which column should come first in the output such as field name.
+Output filtered Permission Set data to stdout or a file. Flags let you set the permissions to extract, output filename, project directory and other things.
 
 # flags.permissionset.summary
 
