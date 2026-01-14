@@ -63,7 +63,7 @@ export default class SdayPs2csv extends SfCommand<SdayPs2csvResult> {
     const project = await SfProject.resolve(projectDir);
 
     // read the permission set and extract the specified permission type
-    const permissionList: PermissionSetSubset[] = PermissionSetUtil.getPermissions(
+    const permissionList: PermissionSetSubset[] = await PermissionSetUtil.getPermissions(
       project,
       flags.permissionset,
       flags.permission

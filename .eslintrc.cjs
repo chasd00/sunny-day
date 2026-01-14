@@ -3,5 +3,9 @@ module.exports = {
   root: true,
   rules: {
     header: 'off',
+    complexity: ["error", 500]
   },
+  ignorePatterns: [
+    ".eslintrc.cjs",
+  ],
 };

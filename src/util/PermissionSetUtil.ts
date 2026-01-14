@@ -1,11 +1,10 @@
 import { readFileSync } from 'node:fs';
-import { SfProject } from '@salesforce/core';
+import { SfProject, Logger } from '@salesforce/core';
 import { XMLParser } from 'fast-xml-parser';
 
 export type PermissionSet = {
   PermissionSet: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    [key: string]: any;
+    [key: string]: string | object;
   };
 };
 
@@ -28,11 +27,15 @@ export class PermissionSetUtil {
    * @param filterForPermission - Type of permission to extract (e.g., 'objectPermissions', 'fieldPermissions', 'userPermissions')
    * @returns Array of permission objects of the specified type
    */
-  public static getPermissions(
+  public static async getPermissions(
     project: SfProject,
     permissionSetName: string,
     filterForPermission: string
-  ): PermissionSetSubset[] {
+  ): Promise<PermissionSetSubset[]> {
+
+    // const log = await Logger.child('PermissionSetUtil.getPermissions');
+    await Logger.child('PermissionSetUtil.getPermissions');
+
     // Ensure filename has the correct extension
     const filename: string = permissionSetName.endsWith(this.PERMISSION_SET_EXTENSION)
       ? permissionSetName
@@ -45,52 +48,52 @@ export class PermissionSetUtil {
     // Parse XML to an object and extract permission level objects based on the permission type
     const parser = new XMLParser();
     const psObj: PermissionSet = parser.parse(xmlData) as PermissionSet;
-    
+
     let permissions: PermissionSetSubset[] = [];
-    if ( Array.isArray( psObj.PermissionSet[filterForPermission] )) {
+    if (Array.isArray(psObj.PermissionSet[filterForPermission])) {
       permissions = [...psObj.PermissionSet[filterForPermission] as PermissionSetSubset[]];
     } else {
       permissions = [psObj.PermissionSet[filterForPermission] as PermissionSetSubset];
     }
-   
-    return permissions.map( p => {
+
+    return permissions.map(p => {
 
       switch (filterForPermission) {
         // set properties PS and Name
         // the value for property Name depends on what permission is being requested
-        
-        case 'objectPermissions':
-          // eslint-disable-next-line no-case-declarations
+
+        case 'objectPermissions': {
           const { object, ...objectPermission } = p
           return {
             PS: permissionSetName,
             Name: object,
             ...objectPermission
           }
-        case 'fieldPermissions':
-          // eslint-disable-next-line no-case-declarations
+        }
+        case 'fieldPermissions': {
           const { field, ...fieldPermission } = p
           return {
             PS: permissionSetName,
             Name: field,
             ...fieldPermission
           }
-        case 'userPermissions':    
-          // eslint-disable-next-line no-case-declarations
+        }
+        case 'userPermissions': {
           const { name, ...userPermission } = p
           return {
             PS: permissionSetName,
             Name: name,
             ...userPermission
           }
+        }
         default:
           return {
             PS: permissionSetName,
             ...p
-          }             
+          }
       }
 
-     }) as PermissionSetSubset[];
+    }) as PermissionSetSubset[];
 
   }
 }
