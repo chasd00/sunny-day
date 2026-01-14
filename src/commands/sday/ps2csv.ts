@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
 import { writeFileSync } from 'node:fs';
 import { Messages, SfProject } from '@salesforce/core';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
@@ -74,17 +72,17 @@ export default class SdayPs2csv extends SfCommand<SdayPs2csvResult> {
     if (flags.outputfile) {
       // write to a file
 
-      if ( flags.outputfile.endsWith('xlsx') ) {
+      if (flags.outputfile.endsWith('xlsx')) {
         // excel file
 
-        const workbook = XLSX.utils.book_new()
-        const worksheet = XLSX.utils.json_to_sheet(permissionList);
+        const workbook: XLSX.WorkBook = XLSX.utils.book_new();
+        const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(permissionList);
         XLSX.utils.book_append_sheet(workbook, worksheet, flags.permission);
         XLSX.writeFile(workbook, flags.outputfile);
 
       } else {
         // plain txt csv file
-        
+
         const csvRows = this.toCSV(permissionList);
         writeFileSync(`./${flags.outputfile}`, csvRows.join('\n'));
       }
@@ -107,7 +105,7 @@ export default class SdayPs2csv extends SfCommand<SdayPs2csvResult> {
 
   // eslint-disable-next-line class-methods-use-this
   private toCSV(permissionList: PermissionSetSubset[]): string[] {
-    
+
     const csvRows: string[] = [];
 
     // - header row

@@ -14,7 +14,8 @@ describe('sday ps2csv NUTs', () => {
   });
 
   it('should display object permissions', () => {
-    const command = 'sday ps2csv -p ps1 -r objectPermissions -c object';
+
+    const command = 'sday ps2csv -p ps1 -r objectPermissions --projectdir ./test/testproject -c object';
     const output = execCmd(command, { ensureExitCode: 0 }).shellOutput.stdout;
     expect(output).to.contain('Account');
   });
