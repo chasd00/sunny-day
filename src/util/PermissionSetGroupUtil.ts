@@ -10,6 +10,11 @@ export type PermissionSetGroup = {
     mutingPermissionSets?: string | string[];
   };
 };
+;
+
+export type PermissionSetGroupSubset = {
+  [key: string]: string;
+};
 
 /**
  * Utility class for reading and parsing Salesforce Permission Set Group metadata files
