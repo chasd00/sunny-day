@@ -77,16 +77,15 @@ Log any issues you find here https://github.com/chasd00/sunny-day/issues
 
 ## Roadmap
 
-1.1 release (Targeting March 2026):
-
-- Permission Set Group to csv command ( `psg2csv` ), it will work just like ps2csv but take into account multiple Permission Sets as well as a Muting Permission Set if one exists.
-- Add a "Contributing" section to the README laying out how to contribute to the project.
-
-  1.2 release (Targetig April 2026):
+1.2 release (Targeting April 2026):
 
 - adding a 'compare' flag. This will allows the user to compare one permission set (or permission set group) with another and identify differences.
+- Add a "Contributing" section to the README laying out how to contribute to the project.
 
 ## Changelog
+
+- 2/4/2026 - version 1.1.0 released
+  - added command psg2csv that works just like ps2csv but analyzes Permission Set Groups and takes the Muting Permission Set into account if one exists
 
 - 1/13/2026
   - sensible column ordering by default, now Permission Set name and object/field/user permission name are always the first two columns of the output
