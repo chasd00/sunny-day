@@ -20,7 +20,7 @@ export default class SdayPsg2csv extends SfCommand<SdayPsg2csvResult> {
   public static readonly examples = messages.getMessages('examples');
 
   public static readonly flags = {
-    permissionset: Flags.string({
+    permissionsetgroup: Flags.string({
       summary: messages.getMessage('flags.permissionsetgroup.summary'),
       description: messages.getMessage('flags.permissionsetgroup.description'),
       char: 'p',
@@ -44,15 +44,7 @@ export default class SdayPsg2csv extends SfCommand<SdayPsg2csvResult> {
       description: messages.getMessage('flags.outputfile.description'),
       char: 'f',
       required: false,
-    }),
-    firstcol: Flags.string({
-      summary: messages.getMessage('flags.firstcol.summary'),
-      description: messages.getMessage('flags.firstcol.description'),
-      char: 'c',
-      required: false,
-      deprecated: true,
-      suggestion: 'No longer needed, sensible column ordering is handled by default.'
-    }),
+    })
   };
 
   public async run(): Promise<SdayPsg2csvResult> {
@@ -65,7 +57,7 @@ export default class SdayPsg2csv extends SfCommand<SdayPsg2csvResult> {
     // read the permission set and extract the specified permission type
     const permissionList: PermissionSetGroupSubset[] = await PermissionSetGroupUtil.getPermissions(
       project,
-      flags.permissionset,
+      flags.permissionsetgroup,
       flags.permission
     );
 
@@ -98,7 +90,7 @@ export default class SdayPsg2csv extends SfCommand<SdayPsg2csvResult> {
     return {
       path: 'src/commands/project/psg2csv.ts',
       data: permissionList,
-      permissionset: flags.permissionset,
+      permissionset: flags.permissionsetgroup,
       permission: flags.permission,
     };
   }
