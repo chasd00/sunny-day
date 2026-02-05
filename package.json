@@ -1,6 +1,6 @@
 {
   "name": "@chasd00/sunny-day",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "A collection of useful Salesforce CLI metadata utilities",
   "keywords": [
     "force",
@@ -60,7 +60,8 @@
     "@types/node": "^24.10.4",
     "fast-xml-parser": "^5.3.3",
     "wireit": "^0.14.12",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
     "@oclif/plugin-command-snapshot": "^5.1.9",
@@ -109,8 +110,7 @@
       "output": [
         "lib/**",
         "*.tsbuildinfo"
-      ],
-      "clean": "if-file-deleted"
+      ]
     },
     "format": {
       "command": "prettier --write \"+(src|test|schemas)/**/*.+(ts|js|json)|command-snapshot.json\"",
