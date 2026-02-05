@@ -51,7 +51,7 @@ Command `psg2csv` works just `ps2csv` above except it analyzes PermissionSetGrou
    ```
 ## Agent Usage
 
-1. Pipe the output from stdout to an agent for more processing.
+1. Pipe stdout to an agent for more processing.
 
    ```sf sday ps2csv --permissionset my_ps --permission userPermissions | claude -p "what granted permissions are related to sites or communities?"```
 
