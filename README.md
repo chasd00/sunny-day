@@ -84,7 +84,7 @@ Log any issues you find here https://github.com/chasd00/sunny-day/issues
 
 ## Changelog
 
-- 2/4/2026 - version 1.1.2 released
+- 2/4/2026 - version 1.1 released
   - added command psg2csv that works just like ps2csv but analyzes Permission Set Groups and takes the Muting Permission Set into account if one exists
 
 - 1/13/2026
