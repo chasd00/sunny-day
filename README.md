@@ -42,7 +42,7 @@ This is a Salesforce CLI plugin containing handy metadata analysis utilities. I 
 
 ## `psg2csv` Usage Examples
 
-Command `psg2csv` works just `ps2csv` above except it analyzes PermissionSetGroups. `psg2cs` combines all Permission Sets that make up the group and also applies the Muting Permission Set if one exists.
+Command `psg2csv` works just `ps2csv` above except it analyzes PermissionSetGroups. `psg2csv` combines all Permission Sets that make up the group and also applies the Muting Permission Set if one exists.
 
 1. Output all user permissions for a permission set group with name my_ps_group as CSV.
 
