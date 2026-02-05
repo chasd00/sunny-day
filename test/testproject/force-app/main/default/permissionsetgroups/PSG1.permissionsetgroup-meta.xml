@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Sunny Day Testing</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>PSG1</label>
+    <mutingPermissionSets>PSG1_Muted</mutingPermissionSets>
+    <permissionSets>PS1</permissionSets>
+    <permissionSets>PS2</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

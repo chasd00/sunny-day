@@ -2,27 +2,27 @@ import { writeFileSync } from 'node:fs';
 import { Messages, SfProject } from '@salesforce/core';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import * as XLSX from 'xlsx';
-import { PermissionSetUtil, PermissionSetSubset } from '../../util/PermissionSetUtil.js';
+import { PermissionSetGroupUtil, PermissionSetGroupSubset } from '../../util/PermissionSetGroupUtil.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
-const messages = Messages.loadMessages('@chasd00/sunny-day', 'sday.ps2csv');
+const messages = Messages.loadMessages('@chasd00/sunny-day', 'sday.psg2csv');
 
-export type SdayPs2csvResult = {
+export type SdayPsg2csvResult = {
   path: string;
   permissionset: string;
   permission: string;
-  data: PermissionSetSubset[];
+  data: PermissionSetGroupSubset[];
 };
 
-export default class SdayPs2csv extends SfCommand<SdayPs2csvResult> {
+export default class SdayPsg2csv extends SfCommand<SdayPsg2csvResult> {
   public static readonly summary = messages.getMessage('summary');
   public static readonly description = messages.getMessage('description');
   public static readonly examples = messages.getMessages('examples');
 
   public static readonly flags = {
-    permissionset: Flags.string({
-      summary: messages.getMessage('flags.permissionset.summary'),
-      description: messages.getMessage('flags.permissionset.description'),
+    permissionsetgroup: Flags.string({
+      summary: messages.getMessage('flags.permissionsetgroup.summary'),
+      description: messages.getMessage('flags.permissionsetgroup.description'),
       char: 'p',
       required: true,
     }),
@@ -44,28 +44,20 @@ export default class SdayPs2csv extends SfCommand<SdayPs2csvResult> {
       description: messages.getMessage('flags.outputfile.description'),
       char: 'f',
       required: false,
-    }),
-    firstcol: Flags.string({
-      summary: messages.getMessage('flags.firstcol.summary'),
-      description: messages.getMessage('flags.firstcol.description'),
-      char: 'c',
-      required: false,
-      deprecated: true,
-      suggestion: 'No longer needed, sensible column ordering is handled by default.'
-    }),
+    })
   };
 
-  public async run(): Promise<SdayPs2csvResult> {
-    const { flags } = await this.parse(SdayPs2csv);
+  public async run(): Promise<SdayPsg2csvResult> {
+    const { flags } = await this.parse(SdayPsg2csv);
 
     // find the project, throws an exception if the project directory is not found or valid
     const projectDir = flags.projectdir ?? '.';
     const project = await SfProject.resolve(projectDir);
 
     // read the permission set and extract the specified permission type
-    const permissionList: PermissionSetSubset[] = await PermissionSetUtil.getPermissions(
+    const permissionList: PermissionSetGroupSubset[] = await PermissionSetGroupUtil.getPermissions(
       project,
-      flags.permissionset,
+      flags.permissionsetgroup,
       flags.permission
     );
 
@@ -96,15 +88,15 @@ export default class SdayPs2csv extends SfCommand<SdayPs2csvResult> {
     // return required flags and the extracted portion of the permission set as a
     // property on the result object in case the user adds the --json flag
     return {
-      path: 'src/commands/project/ps2csv.ts',
+      path: 'src/commands/project/psg2csv.ts',
       data: permissionList,
-      permissionset: flags.permissionset,
+      permissionset: flags.permissionsetgroup,
       permission: flags.permission,
     };
   }
 
   // eslint-disable-next-line class-methods-use-this
-  private toCSV(permissionList: PermissionSetSubset[]): string[] {
+  private toCSV(permissionList: PermissionSetGroupSubset[]): string[] {
 
     const csvRows: string[] = [];
 

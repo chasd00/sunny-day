@@ -1,7 +1,7 @@
 import { execCmd, TestSession } from '@salesforce/cli-plugins-testkit';
 import { expect } from 'chai';
 
-describe('sday ps2csv NUTs', () => {
+describe('sday psg2csv NUTs', () => {
   let session: TestSession;
 
   before(async () => {
@@ -15,7 +15,7 @@ describe('sday ps2csv NUTs', () => {
 
   it('should display object permissions', () => {
 
-    const command = 'sday ps2csv -p PS1 -r objectPermissions --projectdir ./test/testproject -c object';
+    const command = 'sday psg2csv -p PSG1 -r objectPermissions --projectdir ./test/testproject -c object';
     const output = execCmd(command, { ensureExitCode: 0 }).shellOutput.stdout;
     expect(output).to.contain('Account');
   });
