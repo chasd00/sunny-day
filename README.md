@@ -49,7 +49,7 @@ Command `psg2csv` works just `ps2csv` above except it analyzes PermissionSetGrou
    ```
    sf sday psg2csv --permissionsetgroup my_ps_group --permission userPermissions
    ```
-## Using this with agents
+## Agent Usage
 
 1. Pipe the output from stdout to an agent for more processing.
 
