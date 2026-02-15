@@ -80,12 +80,13 @@ sf plugins link .
 
 Log any issues you find here https://github.com/chasd00/sunny-day/issues
 
-## Roadmap
+## Roadmap/Wants
 
-1.2 release (Targeting April 2026):
+- psVScsv: given a PS name, path to a CSV, and permission type compare the PS and CSV then output any differences. Used to ensure permission sets balance to a specification spreadsheet. (maybe a psgVScsv too)
+- xlf generate_template: given a path to a xlf file and an output filename generate a human readable template to be used for language translations. Used to ensure translation keys are matched to translated values.
+- xlf from_template: given a path to a template file, reads the template and creates a xlf file that can be used to directly import all translations without doing it manually key by key in translation workbench.
+- --explode flag on psg2csv that does not combine the permission sets that make up the group and outputs each permisson set and its permission in the output file.
 
-- adding a 'compare' flag. This will allows the user to compare one permission set (or permission set group) with another and identify differences.
-- Add a "Contributing" section to the README laying out how to contribute to the project.
 
 ## Changelog
 
