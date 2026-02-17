@@ -47,6 +47,8 @@ node_modules
 # os specific files
 .DS_Store
 .idea
+*.xlsx
+*.csv
 
 stderr*
 stdout*

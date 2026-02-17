@@ -49,11 +49,28 @@ Command `psg2csv` works just `ps2csv` above except it analyzes PermissionSetGrou
    ```
    sf sday psg2csv --permissionsetgroup my_ps_group --permission userPermissions
    ```
+
+## `xlf2csv` Usage Examples
+
+Command `xlf2csv` reads a translation file exported from Tranlations Workbench in XLIFF format and then outputs CSV.
+
+1. Output to stdout
+
+   ```
+   sf sday xlf2csv --file ./translations/my_translation_file.xlf
+   ```
+
+2. Write the output to a spreadsheet
+
+   ```
+   sf sday xlf2csv --file ./translations/my_translation_file.xlf --outputfile translations.xlsx
+   ```
+
 ## Agent Usage
 
 1. Pipe stdout to an agent for more processing.
 
-   ```sf sday ps2csv --permissionset my_ps --permission userPermissions | claude -p "what granted permissions are related to sites or communities?"```
+   `sf sday ps2csv --permissionset my_ps --permission userPermissions | claude -p "what granted permissions are related to sites or communities?"`
 
 ## Install
 
@@ -83,14 +100,16 @@ Log any issues you find here https://github.com/chasd00/sunny-day/issues
 ## Roadmap/Wants
 
 - psVScsv: given a PS name, path to a CSV, and permission type compare the PS and CSV then output any differences. Used to ensure permission sets balance to a specification spreadsheet. (maybe a psgVScsv too)
-- xlf generate_template: given a path to a xlf file and an output filename generate a human readable template to be used for language translations. Used to ensure translation keys are matched to translated values.
-- xlf from_template: given a path to a template file, reads the template and creates a xlf file that can be used to directly import all translations without doing it manually key by key in translation workbench.
-- --explode flag on psg2csv that does not combine the permission sets that make up the group and outputs each permisson set and its permission in the output file.
 
+- --explode flag on psg2csv that does not combine the permission sets that make up the group and outputs each permisson set and its permission in the output file.
 
 ## Changelog
 
+- 2/16/2026 - version 1.2 released
+  - added command xlf2csv to convert translation files to a csv.
+
 - 2/4/2026 - version 1.1 released
+
   - added command psg2csv that works just like ps2csv but analyzes Permission Set Groups and takes the Muting Permission Set into account if one exists
 
 - 1/13/2026

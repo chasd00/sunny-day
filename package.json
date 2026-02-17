@@ -1,6 +1,6 @@
 {
   "name": "@chasd00/sunny-day",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "A collection of useful Salesforce CLI metadata utilities",
   "keywords": [
     "force",

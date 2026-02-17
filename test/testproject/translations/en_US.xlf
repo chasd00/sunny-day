@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="Salesforce" source-language="en_US" target-language="es" datatype="xml">
+        <body>
+            <trans-unit id="greeting" maxwidth="20" size-unit="char">
+                <source>Hello World</source>
+                <target>Hola Mundo</target>
+                <note>A simple greeting</note>
+            </trans-unit>
+            <trans-unit id="farewell">
+                <source>Goodbye</source>
+                <target>Adiós</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
