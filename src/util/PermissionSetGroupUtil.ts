@@ -13,7 +13,7 @@ export type PermissionSetGroup = {
 ;
 
 export type PermissionSetGroupSubset = {
-  [key: string]: string;
+  [key: string]: string | boolean;
 };
 
 /**
@@ -81,15 +81,21 @@ export class PermissionSetGroupUtil {
       }
     }
 
-    // Apply muting: collect permissions from muting permission sets
+    // Collect permissions from the group's muting permission set(s), keyed by Name.
+    // Muting permission sets are a distinct metadata type, so they must be read from the
+    // mutingpermissionsets/ folder rather than as regular permission sets.
     const mutingPermissions = new Map<string, PermissionSetSubset>();
     for (const mutingPsName of mutingPermissionSets) {
       try {
         // eslint-disable-next-line no-await-in-loop
-        const mutingPsPermissions = await PermissionSetUtil.getPermissions(project, mutingPsName, filterForPermission);
+        const mutingPsPermissions = await PermissionSetUtil.getMutingPermissions(
+          project,
+          mutingPsName,
+          filterForPermission
+        );
         for (const mutingPerm of mutingPsPermissions) {
           // Use Name as the key for identifying the same permission
-          mutingPermissions.set(mutingPerm.Name, mutingPerm);
+          mutingPermissions.set(String(mutingPerm.Name), mutingPerm);
         }
       } catch (error) {
         // If a muting permission set cannot be read, skip it and continue
@@ -99,28 +105,24 @@ export class PermissionSetGroupUtil {
       }
     }
 
-    // Merge permissions with the same Name using OR logic
-    // If multiple permission sets grant the same permission, merge them (any true value wins)
+    // Merge permissions with the same Name using OR logic across the granting permission sets.
+    // If any included permission set grants a flag, the merged result grants it.
     const mergedPermissions = new Map<string, PermissionSetSubset>();
     for (const permission of allPermissions) {
-      const permName = permission.Name;
+      const permName = String(permission.Name);
 
       if (mergedPermissions.has(permName)) {
-        // Merge with existing permission using OR logic
         const existing = mergedPermissions.get(permName)!;
         const merged: PermissionSetSubset = { ...existing };
 
         for (const [key, value] of Object.entries(permission)) {
           if (key === 'PS' || key === 'Name') continue;
 
-          // OR logic: if either the existing or new value is true, the result is true
-          const existingValue = existing[key];
-          if (value || existingValue) {
-            merged[key] = 'true';
-          } else if (!(value && existingValue)) {
-            merged[key] = 'false';
+          if (typeof value === 'boolean' || typeof existing[key] === 'boolean') {
+            // OR logic for boolean flags
+            merged[key] = this.isEnabled(existing[key]) || this.isEnabled(value);
           } else {
-            // For non-boolean values, take the new value
+            // Non-boolean values: take the latest value
             merged[key] = value;
           }
         }
@@ -132,23 +134,21 @@ export class PermissionSetGroupUtil {
       }
     }
 
-    // Apply muting logic: for each merged permission, apply muting if applicable
+    // Apply muting: a `true` flag in a muting permission set disables (mutes) that flag in
+    // the merged result. A `false`/absent flag leaves the granted value untouched. Muting only
+    // subtracts from what the group grants, so it is applied after the merge above.
     const finalPermissions: PermissionSetSubset[] = [];
     for (const [permName, permission] of mergedPermissions) {
       const mutingPerm = mutingPermissions.get(permName);
       if (mutingPerm) {
-        // Apply muting logic: muting permission takes precedence
-        // If any boolean permission is explicitly set to false in the muting PS, it overrides
         const mutedPermission: PermissionSetSubset = { ...permission };
 
         for (const [key, value] of Object.entries(mutingPerm)) {
           if (key === 'PS' || key === 'Name') continue;
 
-          // Muting permission explicitly sets values (typically to false to revoke permissions)
-          if (!value) {
-            mutedPermission[key] = 'false';
-          } else if (value) {
-            mutedPermission[key] = 'true';
+          // Only a muting flag set to true disables the corresponding granted flag.
+          if (this.isEnabled(value)) {
+            mutedPermission[key] = false;
           }
         }
 
@@ -165,5 +165,13 @@ export class PermissionSetGroupUtil {
     }
 
     return finalPermissions;
+  }
+
+  /**
+   * Normalizes a parsed metadata flag to a boolean. fast-xml-parser yields real booleans,
+   * but values may also arrive as the strings 'true'/'false' depending on parser options.
+   */
+  private static isEnabled(value: string | boolean | undefined): boolean {
+    return value === true || value === 'true';
   }
 }
