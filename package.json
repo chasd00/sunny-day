@@ -1,6 +1,6 @@
 {
   "name": "@chasd00/sunny-day",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A collection of useful Salesforce CLI metadata utilities",
   "keywords": [
     "force",
@@ -88,6 +88,9 @@
       "sday": {
         "description": "Sunny Day is a collection of useful Salesforce CLI metadata utilities"
       }
+    },
+    "hooks": {
+      "init": "./lib/hooks/init/warn-if-outdated"
     },
     "flexibleTaxonomy": true
   },

@@ -105,6 +105,9 @@ Log any issues you find here https://github.com/chasd00/sunny-day/issues
 
 ## Changelog
 
+- 6/27/2026 - version 1.2.2 released
+  - the plugin now warns you when a newer version is available on npm (run `sf plugins update` to upgrade). Set `SUNNY_DAY_SKIP_UPDATE_CHECK` to disable.
+
 - 6/27/2026 - version 1.2.1 released
   - fixed a bug in psg2csv related to applying muting permission sets
   - fixed a bug when a permission is specified but doesn't exist in the permissionset
