@@ -1,8 +1,8 @@
 import { writeFileSync } from 'node:fs';
 import { Messages, SfProject } from '@salesforce/core';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
-import * as XLSX from 'xlsx';
 import { PermissionSetUtil, PermissionSetSubset } from '../../util/PermissionSetUtil.js';
+import { writeXlsx } from '../../util/XlsxUtil.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('@chasd00/sunny-day', 'sday.ps2csv');
@@ -74,11 +74,7 @@ export default class SdayPs2csv extends SfCommand<SdayPs2csvResult> {
 
       if (flags.outputfile.endsWith('xlsx')) {
         // excel file
-
-        const workbook: XLSX.WorkBook = XLSX.utils.book_new();
-        const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(permissionList);
-        XLSX.utils.book_append_sheet(workbook, worksheet, flags.permission);
-        XLSX.writeFile(workbook, flags.outputfile);
+        await writeXlsx(flags.outputfile, flags.permission, permissionList);
 
       } else {
         // plain txt csv file

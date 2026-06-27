@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { Messages, SfError } from '@salesforce/core';
 import { SfCommand, Flags } from '@salesforce/sf-plugins-core';
 import { XMLParser } from 'fast-xml-parser';
-import * as XLSX from 'xlsx';
+import { writeXlsx } from '../../util/XlsxUtil.js';
 
 Messages.importMessagesDirectoryFromMetaUrl(import.meta.url);
 const messages = Messages.loadMessages('@chasd00/sunny-day', 'sday.xlf2csv');
@@ -146,10 +146,7 @@ export default class SdayXlf2csv extends SfCommand<SdayXlf2csvResult[]> {
     if (flags.outputfile) {
       if (flags.outputfile.endsWith('.xlsx')) {
         // Excel file
-        const workbook: XLSX.WorkBook = XLSX.utils.book_new();
-        const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(parsedData);
-        XLSX.utils.book_append_sheet(workbook, worksheet, 'Translations');
-        XLSX.writeFile(workbook, flags.outputfile);
+        await writeXlsx(flags.outputfile, 'Translations', parsedData);
       } else {
         // Plain CSV file
         const csvRows = SdayXlf2csv.toCSV(parsedData);

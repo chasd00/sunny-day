@@ -23,9 +23,9 @@
   "author": "Chad Armstrong",
   "type": "module",
   "exports": "./lib/index.js",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "bin": {
-    "sunny-day": "bin/dev.js"
+    "sunny-day": "bin/run.js"
   },
   "directories": {
     "lib": "lib",
@@ -34,8 +34,7 @@
   "files": [
     "/lib",
     "/messages",
-    "/oclif.manifest.json",
-    "/oclif.lock"
+    "/oclif.manifest.json"
   ],
   "scripts": {
     "build": "wireit",
@@ -57,21 +56,20 @@
     "@oclif/core": "^4",
     "@salesforce/core": "^8",
     "@salesforce/sf-plugins-core": "^12",
-    "@types/node": "^24.10.4",
-    "fast-xml-parser": "^5.3.3",
-    "wireit": "^0.14.12",
-    "xlsx": "^0.18.5",
-    "yarn": "^1.22.22"
+    "exceljs": "^4.4.0",
+    "fast-xml-parser": "^5.3.3"
   },
   "devDependencies": {
     "@oclif/plugin-command-snapshot": "^5.1.9",
     "@salesforce/cli-plugins-testkit": "^5.3.10",
     "@salesforce/dev-scripts": "^10",
-    "@types/xlsx": "^0.0.36",
+    "@types/node": "^24.10.4",
     "eslint-plugin-sf-plugin": "^1.18.6",
     "oclif": "^4.22.63",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "wireit": "^0.14.12",
+    "yarn": "^1.22.22"
   },
   "engines": {
     "node": ">=18.0.0"
