@@ -105,7 +105,7 @@ Log any issues you find here https://github.com/chasd00/sunny-day/issues
 
 ## Changelog
 
-- 6/27/2026 - version 1.2.1 released
+- 6/27/2026 - version 1.2.2 released
   - fixed a bug in psg2csv related to applying muting permission sets
   - fixed a bug when a permission is specified but doesn't exist in the permissionset
   - fixed a bug related to CSV output, under certain conditions it will fail with an error
