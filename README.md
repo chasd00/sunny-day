@@ -107,8 +107,6 @@ Log any issues you find here https://github.com/chasd00/sunny-day/issues
 
 - 6/27/2026 - version 1.2.3 released
   - switched the Excel-writing library to a dependency-free build of SheetJS so installing the plugin no longer prints npm deprecation warnings
-
-- 6/27/2026 - version 1.2.2 released
   - fixed a bug in psg2csv related to applying muting permission sets
   - fixed a bug when a permission is specified but doesn't exist in the permissionset
   - fixed a bug related to CSV output, under certain conditions it will fail with an error
