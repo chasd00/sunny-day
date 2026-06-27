@@ -1,4 +1,8 @@
-import ExcelJS from 'exceljs';
+import * as fs from 'node:fs';
+import * as XLSX from 'xlsx';
+
+// The SheetJS ESM build does not auto-load Node's fs module, so writeFile needs it set explicitly.
+XLSX.set_fs(fs);
 
 export type XlsxRow = Record<string, string | boolean>;
 
@@ -10,17 +14,9 @@ export type XlsxRow = Record<string, string | boolean>;
  * @param sheetName - Name for the worksheet
  * @param rows - Row objects; each key becomes a column
  */
-export async function writeXlsx(
-  filePath: string,
-  sheetName: string,
-  rows: readonly XlsxRow[]
-): Promise<void> {
-  const workbook = new ExcelJS.Workbook();
-  const worksheet = workbook.addWorksheet(sheetName);
-
-  const headers = rows.length > 0 ? Object.keys(rows[0]) : [];
-  worksheet.columns = headers.map((header) => ({ header, key: header }));
-  worksheet.addRows(rows as XlsxRow[]);
-
-  await workbook.xlsx.writeFile(filePath);
+export function writeXlsx(filePath: string, sheetName: string, rows: readonly XlsxRow[]): void {
+  const workbook = XLSX.utils.book_new();
+  const worksheet = XLSX.utils.json_to_sheet(rows as XlsxRow[]);
+  XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
+  XLSX.writeFile(workbook, filePath);
 }

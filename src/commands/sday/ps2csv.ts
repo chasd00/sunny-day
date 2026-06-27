@@ -85,7 +85,7 @@ export default class SdayPs2csv extends SfCommand<SdayPs2csvResult> {
 
       if (flags.outputfile.endsWith('xlsx')) {
         // excel file
-        await writeXlsx(flags.outputfile, flags.permission, permissionList);
+        writeXlsx(flags.outputfile, flags.permission, permissionList);
 
       } else {
         // plain txt csv file

@@ -110,3 +110,4 @@ Log any issues you find here https://github.com/chasd00/sunny-day/issues
   - fixed a bug when a permission is specified but doesn't exist in the permissionset
   - fixed a bug related to CSV output, under certain conditions it will fail with an error
   - the plugin now warns you when a newer version is available on npm (run `sf plugins update` to upgrade). Set `SUNNY_DAY_SKIP_UPDATE_CHECK` to disable.
+  - switched the Excel-writing library to a dependency-free build of SheetJS so installing the plugin no longer prints npm deprecation warnings

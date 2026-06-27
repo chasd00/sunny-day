@@ -146,7 +146,7 @@ export default class SdayXlf2csv extends SfCommand<SdayXlf2csvResult[]> {
     if (flags.outputfile) {
       if (flags.outputfile.endsWith('.xlsx')) {
         // Excel file
-        await writeXlsx(flags.outputfile, 'Translations', parsedData);
+        writeXlsx(flags.outputfile, 'Translations', parsedData);
       } else {
         // Plain CSV file
         const csvRows = SdayXlf2csv.toCSV(parsedData);
