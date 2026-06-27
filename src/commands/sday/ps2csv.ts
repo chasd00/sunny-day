@@ -69,6 +69,17 @@ export default class SdayPs2csv extends SfCommand<SdayPs2csvResult> {
       flags.permission
     );
 
+    // nothing to do if the permission set has no permissions of the requested type
+    if (permissionList.length === 0) {
+      this.warn(`No ${flags.permission} found in permission set '${flags.permissionset}'.`);
+      return {
+        path: 'src/commands/project/ps2csv.ts',
+        data: permissionList,
+        permissionset: flags.permissionset,
+        permission: flags.permission,
+      };
+    }
+
     if (flags.outputfile) {
       // write to a file
 
@@ -101,6 +112,10 @@ export default class SdayPs2csv extends SfCommand<SdayPs2csvResult> {
 
   // eslint-disable-next-line class-methods-use-this
   private toCSV(permissionList: PermissionSetSubset[]): string[] {
+
+    if (permissionList.length === 0) {
+      return [];
+    }
 
     const csvRows: string[] = [];
 

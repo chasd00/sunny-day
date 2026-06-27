@@ -105,17 +105,7 @@ Log any issues you find here https://github.com/chasd00/sunny-day/issues
 
 ## Changelog
 
-- 2/16/2026 - version 1.2 released
-  - added command xlf2csv to convert translation files to a csv.
-
-- 2/4/2026 - version 1.1 released
-
-  - added command psg2csv that works just like ps2csv but analyzes Permission Set Groups and takes the Muting Permission Set into account if one exists
-
-- 1/13/2026
-  - sensible column ordering by default, now Permission Set name and object/field/user permission name are always the first two columns of the output
-  - flag `--firstcol` is now marked as deprecated and does nothing
-  - added support for writing directly to an Excel file if flag `--outputfile` has extension .xlsx
-  - refactored a lot of the Permission Set parsing code for reusability when it's time to add psg2csv
-  - added a CLAUDE.md file so Claude Code can help out where it can
-- 1/9/2026 - version 1.0.0 released
+- 6/27/2026 - version 1.2.1 released
+  - fixed a bug in psg2csv related to applying muting permission sets
+  - fixed a bug when a permission is specified but doesn't exist in the permissionset
+  - fixed a bug related to CSV output, under certain conditions it will fail with an error
